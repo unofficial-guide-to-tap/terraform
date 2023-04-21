@@ -10,7 +10,7 @@ resource "google_compute_instance" "jumphost" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = "ubuntu-os-cloud/ubuntu-2210-amd64"
     }
   }
 
@@ -33,4 +33,12 @@ resource "google_compute_instance" "jumphost" {
     email  = google_service_account.jumphost.email
     scopes = ["cloud-platform"]
   }
+}
+
+output "jumphost_user" {
+  value = "tapadmin"
+}
+
+output "jumphost_address" {
+  value = google_compute_instance.jumphost.network_interface.0.access_config.0.nat_ip
 }
