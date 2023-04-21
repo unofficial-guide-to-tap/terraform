@@ -1,0 +1,5 @@
+environment = "demo"
+project_id = "..."
+region = "europe-west1"
+jumphost_zone = "europe-west1-b"
+jumphost_sshkey = "ssh-rsa ..."
