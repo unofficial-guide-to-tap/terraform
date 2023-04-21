@@ -1,3 +1,7 @@
+variable "environment" {
+  type = string
+}
+
 variable "region" {
   type = string
 }
@@ -6,10 +10,10 @@ variable "project_id" {
   type = string
 }
 
-variable "environment" {
+variable "jumphost_zone" {
   type = string
 }
 
-variable "zones" {
-  type = list(any)
+variable "jumphost_sshkey" {
+  type = string
 }

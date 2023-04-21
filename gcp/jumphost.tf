@@ -1,22 +1,36 @@
-module "jumphost" {
-  name                       = "tap-${var.environment}-jumphost"
-  source                     = "terraform-google-modules/bastion-host/google"
-  project                    = var.project_id
-  zone                       = var.zones[0]
-  service_account_name       = "bastion-${var.environment}"
-  network                    = module.vpc.network_name
-  subnet                     = module.vpc.subnets_names[0]
-  image_family               = "ubuntu-2210-amd64"
-  image_project              = "ubuntu-os-cloud"
-  external_ip                = true
-  startup_script             = file("../common/jumphost-setup.sh")
-  fw_name_allow_ssh_from_iap = "tap-${var.environment}-allow-ssh-from-iap-to-tunnel"
+resource "google_service_account" "jumphost" {
+  account_id   = "tap-${var.environment}-jumphost-sa"
+  display_name = "TAP Jumphost Service Account For Environment ${var.environment}"
 }
 
-output "jumphost_name" {
-  value = module.jumphost.hostname
-}
+resource "google_compute_instance" "jumphost" {
+  name         = "tap-${var.environment}-jumphost"
+  machine_type = "e2-standard-2"
+  zone = var.jumphost_zone
 
-output "jumphost_zone" {
-  value = var.zones[0]
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-11"
+    }
+  }
+
+  network_interface {
+    network =  google_compute_network.vpc.self_link
+    access_config {
+      // Ephemeral public IP
+    }
+  }
+ 
+  tags = ["ssh"]
+
+  metadata = {
+    ssh-keys = "tapadmin:${var.jumphost_sshkey}"
+  }
+
+  metadata_startup_script = file("../common/jumphost-setup.sh")
+
+  service_account {
+    email  = google_service_account.jumphost.email
+    scopes = ["cloud-platform"]
+  }
 }
