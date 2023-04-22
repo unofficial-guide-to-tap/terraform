@@ -24,7 +24,7 @@ resource "google_compute_instance" "jumphost" {
   tags = ["ssh"]
 
   metadata = {
-    ssh-keys = "tapadmin:${var.jumphost_sshkey}"
+    ssh-keys = "${var.jumphost_user}:${var.jumphost_sshkey}"
   }
 
   metadata_startup_script = file("../common/jumphost-setup.sh")
