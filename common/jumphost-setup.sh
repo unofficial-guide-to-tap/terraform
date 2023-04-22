@@ -70,7 +70,7 @@ sudo apt-get install terraform
 )
 
 cat <<EOF | sudo tee -a /etc/bash.bashrc
-export PATH="${KREW_ROOT:-\$HOME/.krew}/bin:$PATH"
+export PATH="\${KREW_ROOT:-\$HOME/.krew}/bin:\$PATH"
 EOF
 
 # Ktrl
