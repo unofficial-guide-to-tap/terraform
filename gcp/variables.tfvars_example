@@ -1,7 +1,7 @@
 environment = "demo"
 project_id = "..."
 region = "europe-west1"
-clusters = "cluster"
+clusters = ["cluster"]
 jumphost_zone = "europe-west1-b"
 jumphost_user = "tapadmin"
 jumphost_sshkey = "ssh-rsa ..."
