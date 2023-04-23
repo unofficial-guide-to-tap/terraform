@@ -1,13 +1,16 @@
 # TAP on GCP
 
-1. Create and configure `variables.tfvars`
+1. Create a Service Account and generate a JSON key file.
+
+2. Edit the variables for this Terraform project
 ```
 cp variables.tfvars_example variables.tfvars
 vim variables.tfvars
 ```
 
-2. Run Terraform
+3. Run Terraform
 ```
+export GOOGLE_APPLICATION_CREDENTIALS=PATH_TO_YOUR_JSON_KEY_FILE
 terraform init -backend-config=backend.config -var-file="variables.tfvars"
 terraform apply -var-file="variables.tfvars"
 ```
@@ -16,8 +19,6 @@ terraform apply -var-file="variables.tfvars"
 ```
 JH_USER=$(terraform output jumphost_user)
 JH_ADDR=$(terraform output jumphost_address)
-
-# Make sure your public key is loaded into ssh-agent
 ssh $JH_USER@$JH_ADDR
 ```
 
