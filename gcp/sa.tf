@@ -1,9 +1,3 @@
-data "google_iam_policy" "admin" {
-  binding {
-    role = "roles/owner"
-    members = []
-  }
-}
 
 resource "google_service_account" "tap" {
   account_id   = "tap-${var.environment}"
@@ -14,9 +8,10 @@ resource "google_service_account_key" "tapkey" {
   service_account_id = google_service_account.tap.name
 }
 
-resource "google_service_account_iam_policy" "tap-admin" {
-  service_account_id = google_service_account.tap.name
-  policy_data        = data.google_iam_policy.admin.policy_data
+resource "google_project_iam_member" "tap_owner" {
+  project = var.project_id
+  role    = "roles/owner"
+  member  = "serviceAccount:${google_service_account.tap.email}"
 }
 
 output "service_account_key" {
