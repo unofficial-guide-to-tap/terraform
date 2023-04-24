@@ -19,7 +19,7 @@ resource "google_service_account_iam_policy" "tap-admin" {
   policy_data        = data.google_iam_policy.admin.policy_data
 }
 
-output "tap_sa_key" {
+output "service_account_key" {
   value = google_service_account_key.tapkey.private_key
   sensitive = true
 }
