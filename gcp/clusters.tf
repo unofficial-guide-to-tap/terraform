@@ -8,7 +8,7 @@ data "google_container_engine_versions" "versions" {
   provider       = google-beta
   location       = var.region
   project        = var.project_id
-  version_prefix = "1.25."
+  version_prefix = "1.26."
 }
 
 resource "google_container_cluster" "cluster" {
