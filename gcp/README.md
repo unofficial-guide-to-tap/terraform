@@ -1,5 +1,7 @@
 # TAP on GCP
 
+## Usage
+
 1. Create a Service Account and generate a JSON key file.
 
 2. Edit the variables for this Terraform project
@@ -22,3 +24,10 @@ JH_ADDR=$(terraform output jumphost_address)
 ssh $JH_USER@$JH_ADDR
 ```
 
+## Hints
+
+* Recreate the cluster
+
+  ```
+  terraform apply -var-file="variables.tfvars" -replace "google_container_cluster.cluster[0]"
+  ```
