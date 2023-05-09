@@ -29,5 +29,7 @@ ssh $JH_USER@$JH_ADDR
 * Recreate the cluster
 
   ```
-  terraform apply -var-file="variables.tfvars" -replace "google_container_cluster.cluster[0]"
+  terraform apply -var-file="variables.tfvars" \
+    -replace "google_container_cluster.cluster[0]" \
+    -replace "google_container_node_pool.pool[0]"
   ```
