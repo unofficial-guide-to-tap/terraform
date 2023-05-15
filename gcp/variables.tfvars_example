@@ -5,6 +5,11 @@ region = "europe-west1"
 clusters = ["cluster"]
 # clusters = ["view","iterate","build","run"]
 
+use_existing_zone = true
+zone_dns_name = "tap-demo.example.com"
+tap_address = ""
+cnrs_address = ""
+
 jumphost_zone = "europe-west1-b"
 jumphost_user = "tapadmin"
 jumphost_sshkey = "ssh-rsa ..."
