@@ -15,7 +15,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
 
   default_node_pool {
     name       = "default"
-    vm_size    = "Standard_D2s_v3"
+    vm_size    = "Standard_D8s_v3"
     node_count = 3
     os_disk_size_gb = 100
     vnet_subnet_id = azurerm_subnet.subnet.id

@@ -34,7 +34,7 @@ resource "google_container_node_pool" "pool1" {
 
   node_config {
     preemptible  = false
-    machine_type = "e2-standard-4"
+    machine_type = "e2-standard-8"
     disk_size_gb = 100
 
     service_account = google_service_account.cluster[count.index].email
