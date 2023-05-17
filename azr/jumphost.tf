@@ -25,7 +25,7 @@ resource "azurerm_linux_virtual_machine" "jumphost" {
   network_interface_ids = [ azurerm_network_interface.jumphost-nic.id ]
   size                  = "Standard_D2s_v3"
   admin_username        = "tapadmin"
-  computer_name         = "tap-${var.environment}-jumphost"
+  computer_name         = "tap-azr-${var.environment}"
   disable_password_authentication = true
 
   admin_ssh_key {
