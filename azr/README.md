@@ -1,5 +1,7 @@
 # TAP on Azure
 
+To authenticate Terraform, we use a *Service Principal* with a *Client Secret*. Check [here](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret) for instructions.
+
 ## Usage
 
 1. Edit the variables for this Terraform project
