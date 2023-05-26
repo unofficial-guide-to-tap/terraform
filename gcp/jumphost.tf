@@ -4,10 +4,9 @@ resource "google_service_account" "jumphost" {
 }
 
 resource "google_compute_instance" "jumphost" {
-  name         = "tap-${var.environment}-jumphost"
+  name         = "tap-gcp-${var.environment}-jumphost"
   machine_type = "e2-standard-2"
   zone         = var.jumphost_zone
-  hostname     = "tap-gcp-${var.environment}"
 
   boot_disk {
     initialize_params {
