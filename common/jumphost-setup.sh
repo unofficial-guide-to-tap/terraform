@@ -19,6 +19,8 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docke
 sudo apt update
 sudo apt install -y docker.io
 
+sudo addgroup tapadmin docker
+
 # Install Kubectl
 sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl
